@@ -1,0 +1,30 @@
+﻿<div class="medium-list">
+  <div class="list-viewer-wrapper">
+    <div class="list-header-title">Register</div>
+        
+        <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && onRegisterSubmit()" novalidate>
+            <div class="form-container">
+                <mat-form-field>
+                    <input id="email" matInput formControlName="email" [(ngModel)]="user.email" placeholder="Email" />
+                </mat-form-field>
+                <mat-form-field>
+                    <input id="username" matInput formControlName="username" [(ngModel)]="user.username" placeholder="Username" />
+                </mat-form-field>
+                <mat-form-field>
+                    <input id="password" matInput formControlName="password" [(ngModel)]="user.password" placeholder="Password" [type]="hide ? 'password':'text'" />
+                    <mat-icon matSuffix (click)="hide = !hide">
+                      {{hide ? 'visibility' : 'visibility_off'}}
+                    </mat-icon>
+                </mat-form-field>
+                <mat-form-field>
+                    <input id="cpassword" matInput formControlName="cpassword" [(ngModel)]="user.cpassword" placeholder="Confirm Password" [type]="hide ? 'password':'text'" />
+                    <mat-icon matSuffix (click)="hide = !hide">
+                      {{hide ? 'visibility' : 'visibility_off'}}
+                    </mat-icon>
+                </mat-form-field>
+                <button mat-flat-button color="accent" type="submit" >Register</button>
+                <button mat-flat-button color="primary" routerLink="/login">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
