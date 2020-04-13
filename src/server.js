@@ -1,13 +1,23 @@
-const express = require('express');
+var express = require('express');
+var jwt = require('jsonwebtoken');
 var app = express();
+var secret = 'harrypotter';
 app.use(express.json());
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
+var nodemailer=require('nodemailer');
 //const path = require('path');
 //const bodyParser = require('body-parser');
 
 const User = require('./user');
 
+let transporter = nodemailer.createTransport({
+  service:'gmail',
+  auth:{
+          user:'arhire.paul@gmail.com',
+          pass:'Paulefrumos'
+  }
 
+});
 
 mongoose.Promise=global.Promise;
 var db = mongoose.connect('mongodb://localhost:27017/AuthorizationDB',{useNewUrlParser: true ,useUnifiedTopology: true },function(err,response){
@@ -27,15 +37,18 @@ app.use(function(req,res,next){
     next();
 });
 
-
-app.get("/dbAPI/getUsers",function(req,res){
-    User.find({})
+app.get("/dbAPI/getUserByEmail/:emailadress",function(req,res){
+    User.findOne({email:req.params.emailadress})
     .then((users)=>res.send(users))
     .catch((error)=>console.log(error));
 });
-
-app.get("/dbAPI/getUsernameByEmail/:emailadress",function(req,res){
-    User.find({email:req.params.emailadress},{username:1,_id:0})
+app.get("/dbAPI/getUserByUsername/:username",function(req,res){
+    User.findOne({username:req.params.username})
+    .then((users)=>res.send(users))
+    .catch((error)=>console.log(error));
+});
+app.get("/dbAPI/getUsers",function(req,res){
+    User.find({})
     .then((users)=>res.send(users))
     .catch((error)=>console.log(error));
 });
@@ -46,34 +59,80 @@ app.get("/dbAPI/isUsernameValid/:username",function(req,res){
     .catch((error)=>console.log(error));
 });
 
-app.get("/dbAPI/getPasswordByUsername/:username",function(req,res){
-    User.find({username:req.params.username},{password:1,_id:0})
-    .then((users)=>res.send(users))
-    .catch((error)=>console.log(error));
-});
-
-app.get("/dbAPI/getPasswordByEmail/:emailadress",function(req,res){
-    User.find({email:req.params.emailadress},{password:1,_id:0})
-    .then((users)=>res.send(users))
-    .catch((error)=>console.log(error));
-});
 
 app.post("/dbAPI/addUser",function(req,res){
     (new User({
         'email':req.body.email,
         'username':req.body.username,
-        'password':req.body.password
+        'password':req.body.password,
+        'temporaryToken':jwt.sign({email:req.body.email,usrname:req.body.username},secret,{expiresIn:'1d'})
     }))
     .save()
-    .then((user)=>res.send(user))
-    .catch((error)=>console.log("Duplicate username or email"));
+    .then((user)=>{
+        res.send(user);
+        let mailOptions = {
+            from:'arhire.paul@gmail.com',
+            to:user.email,
+            subject:'test',
+            text:'Salut ' + user.username + 'Te rog apasa pe urmatorul link pentru a confirma inregistrarea http://localhost:8000/activation/'+user.temporaryToken
+        };
+        
+        transporter.sendMail(mailOptions,function(err,data){
+            if(err){
+                console.log(err);
+            }
+            else{
+                console.log('gata');
+            }
+        });
+    })
+    .catch((err)=>console.log(err));
 });
 
+app.get('/activation/:token',function(req,res){
+    var accepted=0;
+    console.log('hai ca e bine0');
+    User.findOne({temporaryToken:req.params.token})
+    .then((user)=>{
+        var token = req.params.token;
+        jwt.verify(token,secret,function(err,decoded){
+            if(err){
+                res.json({succes:false , message:'Link ul de activare a expirat'});
+            }else if(!user){
+                res.json({succes:false , message:'Link ul de activare a expirat'});
+            }
+            else{
+                accepted=1;
+                console.log('hai ca e  f bine');
+                user.temporaryToken=false;
+                user.active=true;
+                user.save(function(err){
+                    if(err) console.log(err); 
+                    else{
+                        console.log('hai ca e bine');
+                    }
+                });
+                
+                //res.json({succes:true , message:'Contul a fost activat'}); 
+                res.redirect("http://localhost:4200/");
+            }
+        });
+        
+    })
+    .catch((err)=>{
+        console.log('aici:'+err);
+    })
+    if(accepted==1){
+        
+    }
+    
+});
 
 app.get('/',function(req,res){
 
   res.send("hello");
 });
+
 
 var port = process.env.port||8000;
 

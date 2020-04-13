@@ -27,20 +27,16 @@ export class DatabaseService {
     return this.get('getUsers');
   }
 
-  getUsernameByEmail(email:String){
-    return this.get(`getUsernameByEmail/${email}`);
-  }
-
-  getPasswordByEmail(email:String){
-    return this.get(`getPasswordByEmail/${email}`);
+  getUserByEmail(email:String){
+    return this.get(`getUserByEmail/${email}`);
   }
 
   isUsernameValid(username:String){
     return this.get(`isUsernameValid/${username}`);
   }
 
-  getPasswordByUsername(username:String){
-    return this.get(`getPasswordByUsername/${username}`);
+  getUserByUsername(username:String){
+    return this.get(`getUserByUsername/${username}`);
   }
 
 }

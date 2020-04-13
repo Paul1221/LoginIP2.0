@@ -2,6 +2,7 @@
 import { LoginModel } from '../_models/login.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {DatabaseService} from '../database.service';
+import {User} from '../_models/user'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html'
@@ -30,24 +31,26 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginSubmit() {
-    this.database.isUsernameValid(this.user.username).subscribe(
-      (user:{username:string}[])=>{
-        if (this.user.username==user[0].username){
-          this.database.getPasswordByUsername(this.user.username).subscribe(
-            (user:{password:string}[])=>{
-              if (this.user.password==user[0].password){
-                alert("Connected succesfully");
+    
+    this.database.getUserByUsername(this.user.username).subscribe(
+      (user:User)=>{
+        if (this.user.username==user.username){
+              if (this.user.password==user.password){
+                if(user.active==true){
+                  alert("Te-ai conectat cu succes!");
+                }
+                else{
+                  alert("Contul nu este activat!");
+                }
               }
               else{
-                alert("Wrong password");
+                alert("Parola gresita");
               }
             }
-          )
-        }
-        else{
-            alert("Incorect Data.");
-        }
-      },
-    );
-  }
+            else{
+              alert("Username-ul nu exista")
+            }
+          }
+        );
+      }
 }

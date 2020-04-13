@@ -2,6 +2,7 @@
 import { RegisterModel } from '../_models/register.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {DatabaseService} from '../database.service';
+import {ConfirmationMailService} from '../confirmation-mail.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -11,7 +12,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   hide = true;
 
-  constructor(private formBuilder: FormBuilder,private database:DatabaseService) { }
+  constructor(private formBuilder: FormBuilder,private database:DatabaseService,private confirmmail:ConfirmationMailService) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({

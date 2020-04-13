@@ -1,9 +1,8 @@
-﻿import { Token } from '@angular/compiler/src/ml_parser/lexer';
-
-export class User {
+﻿export class User {
     id: number;
     username: String;
     password: String;
+    active:Boolean;
     email:String;
-    token:Token;
+    token:String;
 }
