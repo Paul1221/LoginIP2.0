@@ -1,34 +1,45 @@
 ﻿<div class="medium-list">
-    <div class="list-viewer-wrapper">
-      <div class="list-header-title">Login</div>
-  
-      <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && onLoginSubmit()" novalidate>
-        <div class="form-container">  
-          <mat-form-field>
-              <input id="username"
-                     matInput
-                     formControlName="username"
-                     [(ngModel)]="user.username"
-                     placeholder="Enter your username" />
-            </mat-form-field>
-  
-          <mat-form-field>
-              <input id="password"
-                     matInput
-                     formControlName="password"
-                     [(ngModel)]="user.password"
-                     placeholder="Enter your password"
-                     [type]="hide ? 'password':'text'" />
-                <mat-icon matSuffix (click)="hide = !hide">
-                  {{hide ? 'visibility' : 'visibility_off'}}
-                </mat-icon>
-            </mat-form-field>
-  
-            <button mat-flat-button color="accent" type="submit" 
-                    class="mat-raised-button mat-primary" 
-                    [disabled]="!loginForm.valid">Login</button>
-            <button mat-flat-button color="primary" routerLink="/register" class="divider">Register</button>
-        </div>
-      </form>
-    </div>
+  <div class="list-viewer-wrapper">
+    <div class="list-header-title">Login</div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && onLoginSubmit()" novalidate>
+      <div class="form-container">  
+        <mat-form-field>
+            <input id="username"
+                   matInput
+                   formControlName="username"
+                   [(ngModel)]="user.username"
+                   placeholder="Enter your username" />
+          </mat-form-field>
+
+        <mat-form-field>
+            <input id="password"
+                   matInput
+                   formControlName="password"
+                   [(ngModel)]="user.password"
+                   placeholder="Enter your password"
+                   [type]="hide ? 'password':'text'" />
+              <mat-icon matSuffix (click)="hide = !hide">
+                {{hide ? 'visibility' : 'visibility_off'}}
+              </mat-icon>
+          </mat-form-field>
+
+          <button mat-flat-button color="accent" type="submit" 
+                  class="mat-raised-button mat-primary" 
+                  [disabled]="!loginForm.valid">Login</button>
+          <button mat-flat-button color="primary" routerLink="/register" class="divider">Register</button>
+      </div>
+    </form>
   </div>
+  <div>
+    <button class="btn btn-primary" style="margin-left: 2px;margin-top: 2px; width: 50;padding: 4px 12px; font-size: 12px; line-height: 20px;color: aliceblue ;background-color: #385998;border-color: #385998;" (click)='facebooklogin()'><i class="fa fa-facebook"></i>Facebook</button>
+    <button class="btn btn-primary" style="margin-left: 2px;margin-top: 2px; width: 50;padding: 4px 12px; font-size: 12px; line-height: 20px;color: aliceblue ;background-color: #C63D2D;border-color: #C63D2D;" (click)='googlelogin()'><i class="fa fa-google"></i>Google</button>
+  </div>
+   <div>
+     <mat-card *ngIf="socialUser.photoUrl">
+      <img mat-card-md-image [src]="socialUser.photoUrl">
+       <mat-card-title>{{socialUser.name}}</mat-card-title>
+        <mat-card-subtitle> <button class="btn btn-primary" style="margin-left: 2px;margin-top: 2px; width: 50;padding: 4px 12px; font-size: 12px; line-height: 20px;color: aliceblue ;background-color: #385998;border-color: #385998;" (click)='signOut()'><i class="fa fa-signout"></i>Sign Out</button></mat-card-subtitle>
+     </mat-card>
+   </div>
+</div>

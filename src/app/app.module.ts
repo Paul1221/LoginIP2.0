@@ -17,7 +17,20 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { AlertComponent } from './_components';;
+import { SocialLoginModule,AuthServiceConfig,FacebookLoginProvider,GoogleLoginProvider } from 'angularx-social-login';
 
+const config=new AuthServiceConfig([{
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('977157414816-vk4g6l7cjhcgnjqf24d8lqn63jjf2g98.apps.googleusercontent.com')
+
+},
+{
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('265582661268875')
+}]);
+export function provideConfig(){
+    return config;
+}
 
 @NgModule({
     imports: [
@@ -26,7 +39,8 @@ import { AlertComponent } from './_components';;
         MaterialModule,
         ReactiveFormsModule,
         HttpClientModule,
-        appRoutingModule
+        appRoutingModule,
+        SocialLoginModule
     ],
     declarations: [
         AppComponent,
@@ -39,7 +53,7 @@ import { AlertComponent } from './_components';;
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
+        { provide: AuthServiceConfig, useFactory: provideConfig },
         // provider used to create fake backend
         fakeBackendProvider
     ],

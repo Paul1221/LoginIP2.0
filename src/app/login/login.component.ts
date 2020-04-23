@@ -2,7 +2,8 @@
 import { LoginModel } from '../_models/login.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {DatabaseService} from '../database.service';
-import {User} from '../_models/user'
+import {User} from '../_models/user';
+import {AuthService,SocialUser,GoogleLoginProvider,FacebookLoginProvider} from 'angularx-social-login';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html'
@@ -14,8 +15,9 @@ export class LoginComponent implements OnInit {
   user: LoginModel = new LoginModel();
   loginForm: FormGroup;
   hide = true;
+  socialUser: any = SocialUser;
 
-  constructor(private formBuilder: FormBuilder,private database:DatabaseService) { }
+  constructor(private formBuilder: FormBuilder,private database:DatabaseService,private socialAuthService: AuthService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -52,5 +54,21 @@ export class LoginComponent implements OnInit {
             }
           }
         );
+      }
+      facebooklogin() {
+        this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID).then((userData) => {
+          this.socialUser=userData;
+        });
+      }
+    
+      googlelogin() {
+        this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then((userData) => {
+          this.socialUser=userData;
+          alert(this.socialUser.email);
+        });
+      }
+    
+      signOut() {
+        this.socialAuthService.signOut();
       }
 }
