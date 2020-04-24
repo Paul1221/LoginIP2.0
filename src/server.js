@@ -40,23 +40,23 @@ app.use(function(req,res,next){
 app.get("/dbAPI/getUserByEmail/:emailadress",function(req,res){
     User.findOne({email:req.params.emailadress})
     .then((users)=>res.send(users))
-    .catch((error)=>console.log(error));
+    .catch((error)=>res.send(error));
 });
 app.get("/dbAPI/getUserByUsername/:username",function(req,res){
     User.findOne({username:req.params.username})
     .then((users)=>res.send(users))
-    .catch((error)=>console.log(error));
+    .catch((error)=>res.send(error));
 });
 app.get("/dbAPI/getUsers",function(req,res){
     User.find({})
     .then((users)=>res.send(users))
-    .catch((error)=>console.log(error));
+    .catch((error)=>res.send(error));
 });
 
 app.get("/dbAPI/isUsernameValid/:username",function(req,res){
     User.find({username:req.params.username},{username:1,_id:0})
     .then((users)=>res.send(users))
-    .catch((error)=>console.log(error));
+    .catch((error)=>res.send(error));
 });
 
 
@@ -75,6 +75,35 @@ app.post("/dbAPI/addUser",function(req,res){
             to:user.email,
             subject:'test',
             text:'Salut ' + user.username + 'Te rog apasa pe urmatorul link pentru a confirma inregistrarea http://localhost:8000/activation/'+user.temporaryToken
+        };
+        
+        transporter.sendMail(mailOptions,function(err,data){
+            if(err){
+                console.log(err);
+            }
+            else{
+                console.log('gata');
+            }
+        });
+    })
+    .catch((err)=>console.log(err));
+});
+
+app.post("/dbAPI/addSocialUser",function(req,res){
+    (new User({
+        'email':req.body.email,
+        'username':req.body.username,
+        'password':req.body.password,
+        'active':true
+    }))
+    .save()
+    .then((user)=>{
+        res.send(user);
+        let mailOptions = {
+            from:'arhire.paul@gmail.com',
+            to:user.email,
+            subject:'test',
+            text:'Salut ' + user.username + 'parola ta este:'+user.password
         };
         
         transporter.sendMail(mailOptions,function(err,data){

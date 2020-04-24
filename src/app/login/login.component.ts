@@ -60,11 +60,37 @@ export class LoginComponent implements OnInit {
           this.socialUser=userData;
         });
       }
-    
+      
+      private getValidUsernameForSocial() {
+        var username:String;
+        username = this.socialUser.firstName+this.socialUser.lastName;
+        username += this.socialUser.id;
+        return username;
+      }
+
+      private getValidPasswordForSocial(){
+        var password         = '';
+        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < 10; i++ ) {
+          password += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return password;
+      }
+
       googlelogin() {
+        var flag = true;
         this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then((userData) => {
           this.socialUser=userData;
-          alert(this.socialUser.email);
+          this.database.getUserByEmail(this.socialUser.email).subscribe(
+            (user:User)=>{
+              console.log(user);
+              if(user==null){
+                this.database.addSocialUser(this.socialUser.email,this.getValidUsernameForSocial(),this.getValidPasswordForSocial()).subscribe(()=>{alert("A mers!!");});
+              }
+              
+            }
+          );
         });
       }
     

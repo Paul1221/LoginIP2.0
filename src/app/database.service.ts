@@ -22,6 +22,10 @@ export class DatabaseService {
     
     return this.post('addUser',{email,username,password});
   }
+  addSocialUser(email:String,username:String,password:String){
+    
+    return this.post('addSocialUser',{email,username,password});
+  }
 
   getUsers(){
     return this.get('getUsers');
