@@ -16,8 +16,9 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
+import { RecuperareComponent } from './recuperare'
 import { AlertComponent } from './_components';;
-import { SocialLoginModule,AuthServiceConfig,FacebookLoginProvider,GoogleLoginProvider } from 'angularx-social-login';
+import { SocialLoginModule,AuthServiceConfig,FacebookLoginProvider,GoogleLoginProvider } from 'angularx-social-login';;
 
 const config=new AuthServiceConfig([{
     id: GoogleLoginProvider.PROVIDER_ID,
@@ -48,8 +49,8 @@ export function provideConfig(){
         HomeComponent,
         LoginComponent,
         RegisterComponent,
-        AlertComponent
-    ],
+        RecuperareComponent,
+        AlertComponent],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
