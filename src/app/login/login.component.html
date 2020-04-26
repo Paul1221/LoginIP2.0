@@ -1,4 +1,6 @@
 ﻿<div class="medium-list">
+  <button mat-flat-button color="primary" style="width: 295px;margin: 2px" routerLink="/register" class="divider">Inregistrare</button>
+  <button mat-flat-button color="accent" style="width: 295px;margin: 2px" routerLink="/login" class="divider">Logare</button>
   <div class="list-viewer-wrapper">
     <div class="list-header-title">Logare</div>
 
@@ -26,25 +28,12 @@
 
           <button mat-flat-button color="accent" type="submit" 
                   class="mat-raised-button mat-primary" 
-                  [disabled]="!loginForm.valid">Logare</button>
-          <button mat-flat-button color="primary" routerLink="/register" class="divider">Inregistrare</button>
+                  [disabled]="!loginForm.valid">Trimite</button>
       </div>
     </form>
 
   <div>
-    <button class="btn btn-primary" style="margin-left: 2px;margin-top: 2px; width: 50;padding: 4px 12px; font-size: 12px; line-height: 20px;color: aliceblue ;background-color: #385998;border-color: #385998;" (click)='facebooklogin()'><i class="fa fa-facebook"></i>Facebook</button>
-    <button class="btn btn-primary" style="margin-left: 2px;margin-top: 2px; width: 50;padding: 4px 12px; font-size: 12px; line-height: 20px;color: aliceblue ;background-color: #C63D2D;border-color: #C63D2D;" (click)='googlelogin()'><i class="fa fa-google"></i>Google</button>
+    <a routerLink="/recuperare">Ti-ai uitat datele?</a><p></p>
+    <button class="loginBtn loginBtn--facebook" (click)='facebooklogin()'><i class="fa fa-facebook"></i>Facebook</button>
+    <button class="loginBtn loginBtn--google" (click)='googlelogin()'><i class="fa fa-google"></i>Google</button>
   </div>
-  <div class="list-header-title">Ti-ai uitat datele?</div>
-
-  <mat-form-field>
-    <input id="email"
-           matInput
-           formControlName="email"
-           placeholder="Adresa de email" />
-  </mat-form-field>
-  <div></div>
-  <button mat-flat-button color="accent" type="submit" 
-                  class="mat-raised-button mat-primary" >Nume utilizator</button>
-  <button mat-flat-button color="primary" class="divider">Parola</button>
-</div>

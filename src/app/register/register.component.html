@@ -1,6 +1,8 @@
 ﻿<div class="medium-list">
+    <button mat-flat-button color="primary" style="width: 295px;margin: 2px" routerLink="/register" class="divider">Inregistrare</button>
+    <button mat-flat-button color="accent" style="width: 295px;margin: 2px" routerLink="/login" class="divider">Logare</button>
   <div class="list-viewer-wrapper">
-    <div class="list-header-title">Register</div>
+    <div class="list-header-title">Inregistrare</div>
         
         <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && onRegisterSubmit()" novalidate>
             <div class="form-container">
@@ -22,8 +24,8 @@
                       {{hide ? 'visibility' : 'visibility_off'}}
                     </mat-icon>
                 </mat-form-field>
-                <button mat-flat-button color="accent" type="submit" >Register</button>
-                <button mat-flat-button color="primary" routerLink="/login">Login</button>
+                <button mat-flat-button color="accent" type="submit" >Trimite</button>
+                
             </div>
         </form>
     </div>
