@@ -89,21 +89,26 @@ app.post("/dbAPI/addUser",function(req,res){
     .catch((err)=>console.log(err));
 });
 
-app.post("/dbAPI/passRecover",function(req,res){
-  let mailOptions = {
-    from: 'arhire.paul@gmail.com',
-    to:user.email,
-    subject: 'Recuperare parola',
-    text: 'Salut' + user.username + 'parola ta este:' + user.password
-  }
-  transporter.sendMail(mailOptions,function(err,data){
-    if(err){
-        console.log(err);
+app.get("/dbAPI/passRecover/:email",function(req,res){
+  User.findOne({email:req.params.email})
+  .then((user)=>{
+    res.send(user);
+    let mailOptions = {
+      from: 'arhire.paul@gmail.com',
+      to:user.email,
+      subject: 'Recuperare parola',
+      text: 'Salut' + user.username + 'parola ta este:' + user.password
     }
-    else{
-        console.log('gata');
-    }
-});
+    transporter.sendMail(mailOptions,function(err,data){
+      if(err){
+          console.log(err);
+      }
+      else{
+          console.log('gata');
+      }
+    });
+  })
+  .catch((err)=>console.log(err));
 });
 
 app.post("/dbAPI/addSocialUser",function(req,res){

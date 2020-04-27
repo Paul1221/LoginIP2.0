@@ -15,20 +15,20 @@ export class RecuperareComponent implements OnInit {
 
   ngOnInit() {
     this.recoveryForm = this.formBuilder.group({
-      'username': [this.user.username, [
+      'email': [this.user.email, [
         Validators.required
       ]]
     });
   }
   onSubmit(){
-    this.database.getUserByUsername(this.user.username).subscribe(
+    this.database.getUserByEmail(this.user.email).subscribe(
         (user:User)=>{
-            if (this.user.username==user.username){
-                alert("Parola este: $this.user.password$");
-                this.database.passRecover(user.email);
+            if (this.user.email==user.email){
+                alert(this.user.email);
+                this.database.passRecover(this.user.email);
             }
             else
-                alert("Utilizatorul nu exista!");
+                alert("Email incorect!");
         }
     );
   }

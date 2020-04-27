@@ -29,7 +29,8 @@ export class DatabaseService {
 
   passRecover(email:String){
 
-    return this.post('passRecover',{email});
+    alert('S-a intrat');
+    return this.get(`passRecover/${email}`);
   }
 
   getUsers(){
