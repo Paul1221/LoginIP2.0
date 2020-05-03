@@ -13,18 +13,25 @@ export class DatabaseService {
    private get(uri:String){
      return this.http.get(this.ROOT_URL+'/'+uri);
    }
-   
+
    private post(uri:String,payload:Object){
     return this.http.post(this.ROOT_URL+'/'+uri,payload);
   }
 
   addUser(email:String,username:String,password:String){
-    
+
     return this.post('addUser',{email,username,password});
   }
   addSocialUser(email:String,username:String,password:String){
-    
+
     return this.post('addSocialUser',{email,username,password});
+  }
+
+  passRecover(email:String){
+
+    alert('S-a intrat');
+    console.log("aici0");
+    return this.get(`passRecover/${email}`);
   }
 
   getUsers(){

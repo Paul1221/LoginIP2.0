@@ -76,7 +76,7 @@ app.post("/dbAPI/addUser",function(req,res){
             subject:'test',
             text:'Salut ' + user.username + 'Te rog apasa pe urmatorul link pentru a confirma inregistrarea http://localhost:8000/activation/'+user.temporaryToken
         };
-        
+
         transporter.sendMail(mailOptions,function(err,data){
             if(err){
                 console.log(err);
@@ -87,6 +87,29 @@ app.post("/dbAPI/addUser",function(req,res){
         });
     })
     .catch((err)=>console.log(err));
+});
+
+app.get("/dbAPI/passRecover/:email",function(req,res){
+  console.log("aici");
+  User.findOne({email:req.params.email})
+  .then((user)=>{
+    res.send(user);
+    let mailOptions = {
+      from: 'arhire.paul@gmail.com',
+      to:user.email,
+      subject: 'Recuperare parola',
+      text: 'Salut ' + user.username + ' parola ta este: ' + user.password
+    }
+    transporter.sendMail(mailOptions,function(err,data){
+      if(err){
+          console.log(err);
+      }
+      else{
+          console.log('gata');
+      }
+    });
+  })
+  .catch((err)=>console.log(err));
 });
 
 app.post("/dbAPI/addSocialUser",function(req,res){
@@ -105,7 +128,7 @@ app.post("/dbAPI/addSocialUser",function(req,res){
             subject:'test',
             text:'Salut ' + user.username + 'parola ta este:'+user.password
         };
-        
+
         transporter.sendMail(mailOptions,function(err,data){
             if(err){
                 console.log(err);
@@ -136,25 +159,25 @@ app.get('/activation/:token',function(req,res){
                 user.temporaryToken=false;
                 user.active=true;
                 user.save(function(err){
-                    if(err) console.log(err); 
+                    if(err) console.log(err);
                     else{
                         console.log('hai ca e bine');
                     }
                 });
-                
-                //res.json({succes:true , message:'Contul a fost activat'}); 
+
+                //res.json({succes:true , message:'Contul a fost activat'});
                 res.redirect("http://localhost:4200/");
             }
         });
-        
+
     })
     .catch((err)=>{
         console.log('aici:'+err);
     })
     if(accepted==1){
-        
+
     }
-    
+
 });
 
 app.get('/',function(req,res){

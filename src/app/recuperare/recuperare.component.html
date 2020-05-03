@@ -1,20 +1,27 @@
-<div class="medium-list">
-    <button mat-flat-button color="primary" style="width: 295px;margin: 2px" routerLink="/register" class="divider">Inregistrare</button>
-    <button mat-flat-button color="accent" style="width: 295px;margin: 2px" routerLink="/login" class="divider">Logare</button>
-    <div class="list-viewer-wrapper">
-      <div class="list-header-title">Recuperare Parola</div>
-  
+<div style="min-height: 100vh" fxLayout="row" fxLayoutAlign="center center">
+<div class="medium-list" fxFlex="17%">
+  <button mat-flat-button color="primary" style="width: 147px;margin-left: 3px; font-size: large; font-weight: bold;" routerLink="/register" class="divider">Inregistrare</button>
+  <button mat-flat-button color="primary" style="width: 147px;margin-left: 3px; font-size: large; font-weight: bold;" routerLink="/login" class="divider">Logare</button>    
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Recuperare date autentificare</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
       <form [formGroup]="recoveryForm" (ngSubmit)="recoveryForm.valid && onSubmit()" novalidate>
-        <div class="form-container">  
+        <div class="form-container">
           <mat-form-field>
-              <input id="username"
+              <input id="email"
                      matInput
-                     formControlName="username"
-                     [(ngModel)]="user.username"
-                     placeholder="Nume utilizator" />
+                     formControlName="email"
+                     [(ngModel)]="user.email"
+                     placeholder="Email" />
             </mat-form-field>
-            <button mat-flat-button color="accent" type="submit" 
-                  class="mat-raised-button mat-primary" 
+            <button mat-flat-button color="accent" type="submit"
+                  class="mat-raised-button mat-primary"
                   [disabled]="!recoveryForm.valid">Trimite</button>
         </div>
         </form>
+      </mat-card-content>
+    </mat-card>>
+  </div>
+</div>
