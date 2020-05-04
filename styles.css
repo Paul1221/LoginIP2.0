@@ -113,9 +113,3 @@ body {
   .loginBtn--google:focus {
     background: #E74B37;
   }
-
-  .fullscreen {
-    background-color: white;
-    width: 95%;
-    height: 95%;
-  }
