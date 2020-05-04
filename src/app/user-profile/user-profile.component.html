@@ -1,0 +1,83 @@
+<div style="min-height: 100vh; min-width: 100vh;" fxLayout="row" fxLayoutAlign="center center">
+    <div fxFlex="50%">
+    <mat-card>
+            <mat-card-header>
+          <mat-card-title>Creare profil</mat-card-title>
+      </mat-card-header>
+      <mat-card-content style="text-align: center;">
+        <mat-grid-list cols="2" rowHeight="100" style="height: 500px">
+            <mat-grid-tile>
+                <mat-form-field>
+                    <mat-label>Utilizator</mat-label>
+                    <mat-select>
+                        <mat-option value="1">Doctor</mat-option>
+                        <mat-option value="2">Pacient</mat-option>
+                      </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+            
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input matInput placeholder="Nume" />
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input matInput placeholder="Prenume" />
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input matInput placeholder="Adresa" />
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input matInput placeholder="Varsta" />
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <textarea matInput placeholder="Istoric Medical"></textarea>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <textarea matInput placeholder="Membrii Familiei"></textarea>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input matInput placeholder="Environment" />
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <mat-label>Sex</mat-label>
+                    <mat-select>
+                        <mat-option value="1">Masculin</mat-option>
+                        <mat-option value="2">Feminin</mat-option>
+                      </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input matInput placeholder="Telefon" />
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input matInput placeholder="Adresa Cabinetului" />
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field>
+                    <input matInput placeholder="Specializare" />
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+        <button  mat-raised-button style="justify-content: center;" color="primary">Trimite</button>
+      </mat-card-content>
+</mat-card>
+</div>
+</div>
