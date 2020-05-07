@@ -65,7 +65,7 @@ app.post("/dbAPI/addUser",function(req,res){
         'email':req.body.email,
         'username':req.body.username,
         'password':req.body.password,
-        'temporaryToken':jwt.sign({email:req.body.email,usrname:req.body.username},secret,{expiresIn:'1d'})
+        'temporaryToken':jwt.sign({email:req.body.email,username:req.body.username},secret,{expiresIn:'1d'})
     }))
     .save()
     .then((user)=>{
@@ -141,7 +141,6 @@ app.post("/dbAPI/addSocialUser",function(req,res){
 });
 
 app.get('/activation/:token',function(req,res){
-    var accepted=0;
     User.findOne({temporaryToken:req.params.token})
     .then((user)=>{
         var token = req.params.token;
@@ -152,16 +151,13 @@ app.get('/activation/:token',function(req,res){
                 res.json({succes:false , message:'Link ul de activare a expirat'});
             }
             else{
-                accepted=1;
                 user.temporaryToken=false;
                 user.active=true;
                 user.save(function(err){
                     if(err) console.log(err);
-                    else{
-                        console.log('hai ca e bine');
-                    }
                 });
-                res.redirect("http://localhost:4200/profileCreation");
+                profileToken=jwt.sign({email:user.email,username:user.username},secret,{expiresIn:'1d'});
+                res.redirect(`http://localhost:4200/profileCreation/`+profileToken);
             }
         });
 
@@ -169,16 +165,24 @@ app.get('/activation/:token',function(req,res){
     .catch((err)=>{
         console.log('aici:'+err);
     })
-    if(accepted==1){
-
-    }
 
 });
 
-app.patch('/dbAPI/createUserProfile/:email',function(req,res){
-    User.findOneAndUpdate({'email':req.params.email},{$set:req.body})
-    .then((user)=>res.send(user))
-    .catch((err)=>console.log(err));
+app.post('/dbAPI/createUserProfile/:token',function(req,res){
+    var token = req.params.token;
+    console.log("doamne ajuta");
+    jwt.verify(token,secret,function(err,decoded){
+        if(err){
+            res.json({succes:false , message:'Link ul de creare profil a expirat'});
+        }
+        else{
+           User.findOneAndUpdate({'email':decoded.email},{$set:req.body})
+            .then((user)=>res.send(user))
+            .catch((err)=>console.log(err));
+            
+        }
+    });
+    
 });
 
 app.get("/dbAPI/diagnosisInfo/:username",function(req,res){
