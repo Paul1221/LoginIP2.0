@@ -3,4 +3,5 @@ export class RegisterModel {
     password: String;
     cpassword:String;
     email: String;
+    type: String;
 }
