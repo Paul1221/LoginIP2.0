@@ -3,6 +3,13 @@ import { RegisterModel } from '../_models/register.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {DatabaseService} from '../database.service';
 import {ConfirmationMailService} from '../confirmation-mail.service';
+import { ActivatedRoute } from '@angular/router';
+
+interface Type {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -12,7 +19,17 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   hide = true;
 
+
+
   constructor(private formBuilder: FormBuilder,private database:DatabaseService,private confirmmail:ConfirmationMailService) { }
+
+  selectedType: String;
+
+  types: Type[] = [
+    {value:'pacient', viewValue:'Pacient'},
+    {value:'doctor', viewValue:'Doctor'},
+  ]
+
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -31,6 +48,9 @@ export class RegisterComponent implements OnInit {
         Validators.required,
         Validators.minLength(8),
         Validators.maxLength(30)
+      ]],
+      'type': [this.user.type,[
+         Validators.required
       ]]
     });
   }
@@ -54,7 +74,7 @@ export class RegisterComponent implements OnInit {
 
   onRegisterSubmit() {
     if(this.inputValidation()==true){
-      this.database.addUser(this.user.email,this.user.username,this.user.password).subscribe(()=>{alert("A mers!!");});
+      this.database.addUser(this.user.email,this.user.username,this.user.password,this.user.type).subscribe(()=>{alert("A mers!!");});
   }
   }
 

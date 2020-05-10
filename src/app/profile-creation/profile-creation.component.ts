@@ -63,7 +63,7 @@ export class ProfileCreationComponent implements OnInit {
     });
   }
   onSubmit():void{
-      this.database.createUserProfile(this.token,this.user.name,this.user.surname,this.user.age);
+      //this.database.createUserProfile(this.token,this.user.name,this.user.surname,this.user.age);
   }
 
 }

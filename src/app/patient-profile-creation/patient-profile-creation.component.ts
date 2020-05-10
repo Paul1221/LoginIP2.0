@@ -22,7 +22,7 @@ interface Activity {
 @Component({
   selector: 'app-patient-profile-creation',
   templateUrl: './patient-profile-creation.component.html',
-  styleUrls: ['./patient-profile-creation.component.css']
+  
 })
 export class PatientProfileCreationComponent implements OnInit {
   user:ProfileModel = new ProfileModel();
@@ -64,22 +64,22 @@ export class PatientProfileCreationComponent implements OnInit {
         Validators.required
       ]],
       'sex': [this.user.sex, [
-       
+        Validators.required
       ]],
       'environment': [this.user.environment, [
-        
+        Validators.required
       ]],
       'homeAdress': [this.user.homeAdress, [
         Validators.required
       ]],
       'job': [this.user.job, [
-        
+        Validators.required
       ]],
       'activity': [this.user.activity, [
-        
+        Validators.required
       ]],
       'familyMembers': [this.user.familyMembers, [
-        
+
       ]],
       'proximityGroup': [this.user.proximityGroup, [
         
@@ -88,12 +88,12 @@ export class PatientProfileCreationComponent implements OnInit {
        
       ]],
       'workNumber': [this.user.workNumber, [
-        
+        Validators.required   
       ]]
     });
   }
   onSubmit():void{
-      this.database.createUserProfile(this.token,this.user.name,this.user.surname,this.user.age);
+      this.database.createUserProfile(this.token,this.user.name,this.user.surname,this.user.age,this.user.sex,this.user.environment,this.user.homeAdress,this.user.job,this.user.activity,this.user.workNumber).subscribe(()=>{alert("A mers!!");});
   }
 
 }

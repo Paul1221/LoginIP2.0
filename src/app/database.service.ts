@@ -15,22 +15,15 @@ export class DatabaseService {
     }
 
     private post(uri:String,payload:Object){
-      alert(this.ROOT_URL+'/'+uri);
     return this.http.post(this.ROOT_URL+'/'+uri,payload);
     }
-    private patch(uri:String,payload:Object){
-      return this.http.patch(this.ROOT_URL+'/'+uri,payload);
-    }
+    
+  addUser(email:String,username:String,password:String,type:String){
 
-  addUser(email:String,username:String,password:String){
-
-    return this.post('addUser',{email,username,password});
+    return this.post('addUser',{email,username,password,type});
   }
-  createUserProfile(token:any,name:String,surname:String,age:Number){
-    alert("se intra");
-    const uri=`createUserProfile/${token}`;
-    alert(uri);
-    return this.post(uri,{name,surname,age});
+  createUserProfile(token:any,name:String,surname:String,age:Number,sex:String,environment:String,homeAdress:String,job:String,activity:String,workNumber:String){
+    return this.post(`createPatientProfile/${token}`,{name,surname,age,sex,environment,homeAdress,job,activity,workNumber});
   }
   addSocialUser(email:String,username:String,password:String){
 
@@ -38,9 +31,6 @@ export class DatabaseService {
   }
 
   passRecover(email:String){
-
-    alert('S-a intrat');
-    console.log("aici0");
     return this.get(`passRecover/${email}`);
   }
 

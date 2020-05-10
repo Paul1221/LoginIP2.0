@@ -157,7 +157,7 @@ app.get('/activation/:token',function(req,res){
                     if(err) console.log(err);
                 });
                 profileToken=jwt.sign({email:user.email,username:user.username},secret,{expiresIn:'1d'});
-                res.redirect(`http://localhost:4200/profileCreation/`+profileToken);
+                res.redirect(`http://localhost:4200/patientProfileCreation/`+profileToken);
             }
         });
 
@@ -168,7 +168,7 @@ app.get('/activation/:token',function(req,res){
 
 });
 
-app.post('/dbAPI/createUserProfile/:token',function(req,res){
+app.post('/dbAPI/createPatientProfile/:token',function(req,res){
     var token = req.params.token;
     console.log("doamne ajuta");
     jwt.verify(token,secret,function(err,decoded){
@@ -176,6 +176,7 @@ app.post('/dbAPI/createUserProfile/:token',function(req,res){
             res.json({succes:false , message:'Link ul de creare profil a expirat'});
         }
         else{
+            console.log("ura");
            User.findOneAndUpdate({'email':decoded.email},{$set:req.body})
             .then((user)=>res.send(user))
             .catch((err)=>console.log(err));

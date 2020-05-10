@@ -19,7 +19,8 @@ const UserSchema= new mongoose.Schema({
     temporaryToken:{type:String,required:false},
     specialization:{type:String,required:false},
     cabinetAdress:{type:String,required:false},
-    workNumber:{type:String,required:false}
+    workNumber:{type:String,required:false},
+    type:{type:String,required:false}
 });
 
 const User = mongoose.model('users',UserSchema,'users');
