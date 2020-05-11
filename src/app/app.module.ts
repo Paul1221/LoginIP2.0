@@ -1,7 +1,9 @@
 ﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material.module';
+import { MDBBootstrapModule,ButtonsModule, WavesModule, CollapseModule, InputsModule } from 'angular-bootstrap-md'
 //import {FormsModule} from '@angular/forms';
 import { NavBarComponent } from './nav-bar/nav-bar.component'
 import { ReactiveFormsModule } from '@angular/forms';
@@ -19,7 +21,10 @@ import { RegisterComponent } from './register';
 import { RecuperareComponent } from './recuperare'
 import { AlertComponent } from './_components';;
 import { SocialLoginModule,AuthServiceConfig,FacebookLoginProvider,GoogleLoginProvider } from 'angularx-social-login';;
-
+import { PatientProfileCreationComponent } from './patient-profile-creation/patient-profile-creation.component';
+import { DoctorProfileCreationComponent } from './doctor-profile-creation'
+;
+import { SelectionComponent } from './selection/selection.component'
 const config=new AuthServiceConfig([{
     id: GoogleLoginProvider.PROVIDER_ID,
     provider: new GoogleLoginProvider('977157414816-vk4g6l7cjhcgnjqf24d8lqn63jjf2g98.apps.googleusercontent.com')
@@ -38,10 +43,17 @@ export function provideConfig(){
         BrowserModule,
         BrowserAnimationsModule,
         MaterialModule,
+        MDBBootstrapModule.forRoot(),
+        FlexLayoutModule,
+        ButtonsModule,
+        WavesModule,
+        CollapseModule,
+        InputsModule,
         ReactiveFormsModule,
         HttpClientModule,
         appRoutingModule,
-        SocialLoginModule
+        SocialLoginModule,
+        
     ],
     declarations: [
         AppComponent,
@@ -50,7 +62,12 @@ export function provideConfig(){
         LoginComponent,
         RegisterComponent,
         RecuperareComponent,
-        AlertComponent],
+        AlertComponent,
+        PatientProfileCreationComponent,
+        DoctorProfileCreationComponent
+,
+        SelectionComponent    ],
+        
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

@@ -1,9 +1,12 @@
-﻿<div class="medium-list">
-  <button mat-flat-button color="primary" style="width: 295px;margin: 2px" routerLink="/register" class="divider">Inregistrare</button>
-  <button mat-flat-button color="accent" style="width: 295px;margin: 2px" routerLink="/login" class="divider">Logare</button>
-  <div class="list-viewer-wrapper">
-    <div class="list-header-title">Logare</div>
-
+﻿<div style="min-height: 100vh;" fxLayout="row" fxLayoutAlign="center center">
+<div class="medium-list" fxFlex="17%">
+  <button mat-flat-button color="primary" style="width: 147px;margin-left: 3px; font-size: large; font-weight: bold;" routerLink="/register" class="divider">Inregistrare</button>
+  <button mat-flat-button color="primary" style="width: 147px;margin-left: 3px; font-size: large; font-weight: bold;" routerLink="/login" class="divider">Logare</button>
+  <mat-card>
+    <mat-card-header>
+    <mat-card-title>Logare</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
     <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && onLoginSubmit()" novalidate>
       <div class="form-container">  
         <mat-form-field>
@@ -33,7 +36,12 @@
     </form>
 
   <div>
+    <p></p>
     <a routerLink="/recuperare">Ti-ai uitat datele?</a><p></p>
-    <button class="loginBtn loginBtn--facebook" (click)='facebooklogin()'><i class="fa fa-facebook"></i>Facebook</button>
-    <button class="loginBtn loginBtn--google" (click)='googlelogin()'><i class="fa fa-google"></i>Google</button>
+    <button style="margin-top: 100px;" class="loginBtn loginBtn--facebook" (click)='facebooklogin()'>Facebook</button>
+    <button class="loginBtn loginBtn--google" (click)='googlelogin()'>Google</button>
   </div>
+</mat-card-content>
+  </mat-card>
+</div>
+</div>

@@ -1,0 +1,81 @@
+<div style="min-height: 100vh; min-width: 100vh;" fxLayout="row" fxLayoutAlign="center center">
+    <div fxFlex="50%">
+    <mat-card>
+            <mat-card-header>
+          <mat-card-title>Creare profil doctor</mat-card-title>
+      </mat-card-header>
+      <mat-card-content style="text-align: center;">
+        <form [formGroup]="profileForm" (ngSubmit)="profileForm.valid && onSubmit()" novalidate>
+            <mat-grid-list cols="2" rowHeight="100" style="height: 500px">
+                <mat-grid-tile>
+                    <mat-form-field>
+                        <input matInput id="name"
+                        formControlName="name"
+                        [(ngModel)]="user.name" placeholder="Nume" />
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field>
+                        <input matInput id="surname"
+                        formControlName="surname"
+                        [(ngModel)]="user.surname" placeholder="Prenume" />
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field>
+                        <input matInput id="homeAdress"
+                        formControlName="homeAdress"
+                        [(ngModel)]="user.homeAdress" placeholder="Adresa" />
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field>
+                        <input matInput id="age"
+                        formControlName="age"
+                        [(ngModel)]="user.age" placeholder="Varsta" />
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field>
+                        <mat-label>Mediul de viata</mat-label>
+                        <mat-select matInput formControlName="environment" [(ngModel)]="user.environment" #environment name="environment">
+                            <mat-option *ngFor="let environment of environments" [value]="environment.value">{{environment.viewValue}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field>
+                        <mat-label>Sex</mat-label>
+                        <mat-select matInput formControlName="sex" [(ngModel)]="user.sex" #sex name="gender">
+                            <mat-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field>
+                        <input matInput id="workNumber"
+                        formControlName="workNumber"
+                        [(ngModel)]="user.workNumber" placeholder="Telefon" />
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field>
+                        <input matInput id="cabinetAdress"
+                        formControlName="cabinetAdress"
+                        [(ngModel)]="user.cabinetAdress" placeholder="Adresa Cabinetului" />
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field>
+                        <input matInput id="specialization"
+                        formControlName="specialization"
+                        [(ngModel)]="user.specialization" placeholder="Specializare" />
+                    </mat-form-field>
+                </mat-grid-tile>
+            </mat-grid-list>
+            <button  mat-raised-button style="justify-content: center;" type="submit" color="primary" [disabled]="!profileForm.valid">Trimite</button>
+        </form>
+      </mat-card-content>
+</mat-card>
+</div>
+</div>
