@@ -7,7 +7,7 @@ export class DatabaseService {
   readonly ROOT_URL;
 
   constructor(private http:HttpClient) {
-    this.ROOT_URL="http://localhost:8000/dbAPI";
+    this.ROOT_URL="https://auth-service-ip.herokuapp.com/dbAPI";
    }
 
     private get(uri:String){
