@@ -69,7 +69,7 @@ export class DoctorProfileCreationComponent implements OnInit {
     });
   }
   onSubmit():void{
-      this.database.createUserProfile(this.token,this.user.name,this.user.surname,this.user.age,this.user.sex,this.user.environment,this.user.homeAdress,this.user.job,this.user.activity,this.user.workNumber);
+      this.database.createUserProfile(this.token,this.user.name,this.user.surname,this.user.age);
   }
 
 }
