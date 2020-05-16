@@ -18,12 +18,11 @@ export class DatabaseService {
     return this.http.post(this.ROOT_URL+'/'+uri,payload);
     }
     
-  addUser(email:String,username:String,password:String,type:String){
-
-    return this.post('addUser',{email,username,password,type});
+  addUser(email:String,username:String,password:String){
+    return this.post('addUser',{email,username,password});
   }
-  createUserProfile(token:any,name:String,surname:String,age:Number,sex:String,environment:String,homeAdress:String,job:String,activity:String,workNumber:String){
-    return this.post(`createPatientProfile/${token}`,{name,surname,age,sex,environment,homeAdress,job,activity,workNumber});
+  createUserProfile(token:any,name:String,surname:String,age:Number,sex:String,environment:String,homeAdress:String,job:String,activity:String,workNumber:String,type:String){
+    return this.post(`createPatientProfile/${token}`,{name,surname,age,sex,environment,homeAdress,job,activity,workNumber,type});
   }
   addSocialUser(email:String,username:String,password:String){
 

@@ -23,8 +23,9 @@ import { AlertComponent } from './_components';;
 import { SocialLoginModule,AuthServiceConfig,FacebookLoginProvider,GoogleLoginProvider } from 'angularx-social-login';;
 import { PatientProfileCreationComponent } from './patient-profile-creation/patient-profile-creation.component';
 import { DoctorProfileCreationComponent } from './doctor-profile-creation'
-;
-import { SelectionComponent } from './selection/selection.component'
+import { SelectionComponent } from './selection';;
+import { OrarMedicComponent } from './orar-medic/orar-medic.component'
+
 const config=new AuthServiceConfig([{
     id: GoogleLoginProvider.PROVIDER_ID,
     provider: new GoogleLoginProvider('977157414816-vk4g6l7cjhcgnjqf24d8lqn63jjf2g98.apps.googleusercontent.com')
@@ -53,7 +54,7 @@ export function provideConfig(){
         HttpClientModule,
         appRoutingModule,
         SocialLoginModule,
-        
+
     ],
     declarations: [
         AppComponent,
@@ -64,10 +65,11 @@ export function provideConfig(){
         RecuperareComponent,
         AlertComponent,
         PatientProfileCreationComponent,
-        DoctorProfileCreationComponent
-,
-        SelectionComponent    ],
-        
+        DoctorProfileCreationComponent,
+        SelectionComponent,
+        OrarMedicComponent,
+    ],
+
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

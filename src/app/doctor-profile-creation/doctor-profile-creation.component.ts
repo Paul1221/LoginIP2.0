@@ -21,8 +21,10 @@ interface Gender {
 export class DoctorProfileCreationComponent implements OnInit {
   user:ProfileModel = new ProfileModel();
   profileForm : FormGroup;
-  constructor(private formBuilder: FormBuilder,private database:DatabaseService,private route: ActivatedRoute) { }
   token:any;
+
+  constructor(private formBuilder: FormBuilder,private database:DatabaseService,private route: ActivatedRoute) { }
+  
 
   genders: Gender[] = [
     {value:'male', viewValue:'Barbat'},
@@ -69,7 +71,7 @@ export class DoctorProfileCreationComponent implements OnInit {
     });
   }
   onSubmit():void{
-      this.database.createUserProfile(this.token,this.user.name,this.user.surname,this.user.age);
+      this.database.createUserProfile(this.token,this.user.name,this.user.surname,this.user.age,this.user.sex,this.user.environment,this.user.homeAdress,this.user.job,this.user.activity,this.user.workNumber,'doctor');
   }
 
 }
