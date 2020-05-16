@@ -1,0 +1,21 @@
+export class ProfileModel {
+    name:String;
+    surname:String;
+    age:Number;
+    sex:String;
+    environment:String;
+    county:String;
+    municipality:String;
+    street:String;
+    number:String;
+    bloc:String;
+    scara:String;
+    flat:String;
+    job:String;
+    activity:String;
+    medicalHistory:[String];
+    specialization:String;
+    cabinetAdress:String;
+    workNumber:String;
+    workplace:String
+}

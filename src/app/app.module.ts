@@ -19,9 +19,11 @@ import { HomeComponent } from './home';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { RecuperareComponent } from './recuperare'
-import { UserProfileComponent } from './user-profile'
 import { AlertComponent } from './_components';;
 import { SocialLoginModule,AuthServiceConfig,FacebookLoginProvider,GoogleLoginProvider } from 'angularx-social-login';;
+import { PatientProfileCreationComponent } from './patient-profile-creation/patient-profile-creation.component';
+import { DoctorProfileCreationComponent } from './doctor-profile-creation'
+import { SelectionComponent } from './selection';
 
 const config=new AuthServiceConfig([{
     id: GoogleLoginProvider.PROVIDER_ID,
@@ -50,7 +52,8 @@ export function provideConfig(){
         ReactiveFormsModule,
         HttpClientModule,
         appRoutingModule,
-        SocialLoginModule
+        SocialLoginModule,
+        
     ],
     declarations: [
         AppComponent,
@@ -59,8 +62,12 @@ export function provideConfig(){
         LoginComponent,
         RegisterComponent,
         RecuperareComponent,
-        UserProfileComponent,
-        AlertComponent],
+        AlertComponent,
+        PatientProfileCreationComponent,
+        DoctorProfileCreationComponent,
+        SelectionComponent
+    ],
+        
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

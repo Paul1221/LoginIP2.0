@@ -10,17 +10,19 @@ export class DatabaseService {
     this.ROOT_URL="http://localhost:8000/dbAPI";
    }
 
-   private get(uri:String){
+    private get(uri:String){
      return this.http.get(this.ROOT_URL+'/'+uri);
-   }
+    }
 
-   private post(uri:String,payload:Object){
+    private post(uri:String,payload:Object){
     return this.http.post(this.ROOT_URL+'/'+uri,payload);
-  }
-
+    }
+    
   addUser(email:String,username:String,password:String){
-
     return this.post('addUser',{email,username,password});
+  }
+  createUserProfile(token:any,name:String,surname:String,age:Number,sex:String,environment:String,homeAdress:String,job:String,activity:String,workNumber:String,type:String){
+    return this.post(`createPatientProfile/${token}`,{name,surname,age,sex,environment,homeAdress,job,activity,workNumber,type});
   }
   addSocialUser(email:String,username:String,password:String){
 
@@ -28,9 +30,6 @@ export class DatabaseService {
   }
 
   passRecover(email:String){
-
-    alert('S-a intrat');
-    console.log("aici0");
     return this.get(`passRecover/${email}`);
   }
 
