@@ -7,13 +7,14 @@ import { RecuperareComponent } from './recuperare'
 import { AuthGuard } from './_helpers';
 import { PatientProfileCreationComponent } from './patient-profile-creation/patient-profile-creation.component';
 import { DoctorProfileCreationComponent } from './doctor-profile-creation';
+import { SelectionComponent } from './selection';
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'recuperare', component: RecuperareComponent },
-    { path: 'profileCreation/:token', component: PatientProfileCreationComponent },
+    { path: 'profileCreation/:token', component: SelectionComponent },
     { path: 'doctorProfileCreation/:token', component: DoctorProfileCreationComponent },
     { path: 'patientProfileCreation/:token', component: PatientProfileCreationComponent },
     // otherwise redirect to home

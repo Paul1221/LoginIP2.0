@@ -10,12 +10,6 @@
             <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && onRegisterSubmit()" novalidate>
                 <div class="form-container">
                     <mat-form-field>
-                        <mat-label>Utilizator</mat-label>
-                        <mat-select matInput formControlName="type" [(ngModel)]="user.type" #type name="type">
-                            <mat-option *ngFor="let type of types" [value]="type.value">{{type.viewValue}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <mat-form-field>
                         <input id="email" matInput formControlName="email" [(ngModel)]="user.email" placeholder="Email" />
                     </mat-form-field>
                     <mat-form-field>

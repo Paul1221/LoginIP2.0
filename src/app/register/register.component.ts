@@ -49,9 +49,6 @@ export class RegisterComponent implements OnInit {
         Validators.minLength(8),
         Validators.maxLength(30)
       ]],
-      'type': [this.user.type,[
-         Validators.required
-      ]]
     });
   }
 
@@ -74,7 +71,7 @@ export class RegisterComponent implements OnInit {
 
   onRegisterSubmit() {
     if(this.inputValidation()==true){
-      this.database.addUser(this.user.email,this.user.username,this.user.password,this.user.type).subscribe(()=>{alert("A mers!!");});
+      this.database.addUser(this.user.email,this.user.username,this.user.password).subscribe(()=>{alert("A mers!!");});
   }
   }
 

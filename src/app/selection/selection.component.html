@@ -1,0 +1,21 @@
+<div style="min-height: 100vh" fxLayout="row" fxLayoutAlign="center center">
+  <div class="medium-list" fxFlex="17%">
+      <mat-card>
+        <mat-card-header>
+      <mat-card-title>Alegere pacient/doctor</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+          <form [formGroup]="selectionForm" (ngSubmit)="selectionForm.valid && onSelectSubmit()" novalidate>
+              <div class="form-container">
+                  <mat-form-field>
+                      <mat-label>Utilizator</mat-label>
+                      <mat-select matInput formControlName="type" [(ngModel)]="user.type" #type name="type">
+                          <mat-option *ngFor="let type of types" [value]="type.value">{{type.viewValue}}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <button mat-raised-button style="justify-content: center;" color="primary" type="submit" >Trimite</button>
+              </div>
+          </form>
+      </mat-card-content>
+  </mat-card>
+  </div>

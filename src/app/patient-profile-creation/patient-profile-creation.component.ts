@@ -47,7 +47,7 @@ export class PatientProfileCreationComponent implements OnInit {
     {value:'o_data_pe_saptmana', viewValue:'O data pe saptamana'},
     {value:'o_data_pe_luna', viewValue:'O data pe luna'},
     {value:'mai_rar', viewValue:'Mai rar'}
-  ]
+  ];
 
   ngOnInit(): void {
     this.token = this.route.snapshot.paramMap.get("token");
@@ -93,7 +93,7 @@ export class PatientProfileCreationComponent implements OnInit {
     });
   }
   onSubmit():void{
-      this.database.createUserProfile(this.token,this.user.name,this.user.surname,this.user.age,this.user.sex,this.user.environment,this.user.homeAdress,this.user.job,this.user.activity,this.user.workNumber).subscribe(()=>{alert("A mers!!");});
+      this.database.createUserProfile(this.token,this.user.name,this.user.surname,this.user.age,this.user.sex,this.user.environment,this.user.homeAdress,this.user.job,this.user.activity,this.user.workNumber,'pacient').subscribe(()=>{alert("A mers!!");});
   }
 
 }

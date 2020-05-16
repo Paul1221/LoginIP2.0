@@ -23,6 +23,7 @@ import { AlertComponent } from './_components';;
 import { SocialLoginModule,AuthServiceConfig,FacebookLoginProvider,GoogleLoginProvider } from 'angularx-social-login';;
 import { PatientProfileCreationComponent } from './patient-profile-creation/patient-profile-creation.component';
 import { DoctorProfileCreationComponent } from './doctor-profile-creation'
+import { SelectionComponent } from './selection';
 
 const config=new AuthServiceConfig([{
     id: GoogleLoginProvider.PROVIDER_ID,
@@ -63,7 +64,8 @@ export function provideConfig(){
         RecuperareComponent,
         AlertComponent,
         PatientProfileCreationComponent,
-        DoctorProfileCreationComponent
+        DoctorProfileCreationComponent,
+        SelectionComponent
     ],
         
     providers: [
