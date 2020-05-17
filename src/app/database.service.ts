@@ -5,9 +5,9 @@ import {HttpClient} from '@angular/common/http';
 })
 export class DatabaseService {
   readonly ROOT_URL;
-
+  
   constructor(private http:HttpClient) {
-    this.ROOT_URL="http://localhost:8000/dbAPI";
+    this.ROOT_URL="https://auth-service-ip.herokuapp.com/dbAPI";
    }
 
     private get(uri:String){
@@ -21,8 +21,15 @@ export class DatabaseService {
   addUser(email:String,username:String,password:String){
     return this.post('addUser',{email,username,password});
   }
-  createUserProfile(token:any,name:String,surname:String,age:Number,sex:String,environment:String,homeAdress:String,job:String,activity:String,workNumber:String,type:String){
-    return this.post(`createPatientProfile/${token}`,{name,surname,age,sex,environment,homeAdress,job,activity,workNumber,type});
+  createPatientProfile(token:any,name:String,surname:String,age:Number,sex:String,environment:String,homeStreet:String,homeCity:String,homeCountry:String,homeStreetNr:Number,job:String,activity:String,homeNumber:String,type:String){
+    return this.post(`createPatientProfile/${token}`,{name,surname,age,sex,environment,homeStreet,homeCity,homeCountry,homeStreetNr,job,activity,homeNumber,type});
+  }
+  createDoctorProfile(token:any,name:String,surname:String,specializations:Array<String>,cabinetStreet:String,cabinetCity:String,cabinetRegion:String,cabinetStreetNr:Number,age:Number,workNumber:String,hospitalName:String,type:String){
+    return this.post(`createPatientProfile/${token}`,{name,surname,age,specializations,cabinetStreet,cabinetCity,cabinetRegion,cabinetStreetNr,hospitalName,workNumber,type});
+  }
+  createDoctorDisponibility(token:any,disponibility:Array<String>){
+    alert(disponibility[0]);
+    return this.post(`createPatientProfile/${token}`,{disponibility});
   }
   addSocialUser(email:String,username:String,password:String){
 
@@ -47,6 +54,12 @@ export class DatabaseService {
 
   getUserByUsername(username:String){
     return this.get(`getUserByUsername/${username}`);
+  }
+
+
+  setGeolocation(username:String,latitude:Number,longitude:Number){
+    alert (latitude);
+    return this.post(`setGeolocation/${username}`,{latitude,longitude});
   }
 
 }

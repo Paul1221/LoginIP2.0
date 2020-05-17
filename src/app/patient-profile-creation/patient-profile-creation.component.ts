@@ -22,6 +22,7 @@ interface Activity {
 @Component({
   selector: 'app-patient-profile-creation',
   templateUrl: './patient-profile-creation.component.html',
+  styleUrls: ['./patient-profile-creation.components.css']
   
 })
 export class PatientProfileCreationComponent implements OnInit {
@@ -69,20 +70,28 @@ export class PatientProfileCreationComponent implements OnInit {
       'environment': [this.user.environment, [
         Validators.required
       ]],
-      'homeAdress': [this.user.homeAdress, [
+      'county': [this.user.county, [
         Validators.required
+      ]],
+      'municipality': [this.user.municipality, [
+      ]],
+      'street': [this.user.street, [
+        Validators.required
+      ]],
+      'number': [this.user.number, [
+        Validators.required
+      ]],
+      'bloc': [this.user.bloc, [
+      ]],
+      'scara': [this.user.scara, [
+      ]],
+      'flat': [this.user.flat, [
       ]],
       'job': [this.user.job, [
         Validators.required
       ]],
       'activity': [this.user.activity, [
         Validators.required
-      ]],
-      'familyMembers': [this.user.familyMembers, [
-
-      ]],
-      'proximityGroup': [this.user.proximityGroup, [
-        
       ]],
       'medicalHistory': [this.user.medicalHistory, [
        
@@ -93,7 +102,6 @@ export class PatientProfileCreationComponent implements OnInit {
     });
   }
   onSubmit():void{
-      this.database.createUserProfile(this.token,this.user.name,this.user.surname,this.user.age,this.user.sex,this.user.environment,this.user.homeAdress,this.user.job,this.user.activity,this.user.workNumber,'pacient').subscribe(()=>{alert("A mers!!");});
+      this.database.createPatientProfile(this.token,this.user.name,this.user.surname,this.user.age,this.user.sex,this.user.environment,this.user.street,this.user.municipality,this.user.county,this.user.number,this.user.job,this.user.activity,this.user.workNumber,'pacient').subscribe(()=>{alert("A mers!!");});
   }
-
 }

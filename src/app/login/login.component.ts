@@ -4,9 +4,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import {DatabaseService} from '../database.service';
 import {User} from '../_models/user';
 import {AuthService,SocialUser,GoogleLoginProvider,FacebookLoginProvider} from 'angularx-social-login';
+import { AuthTokenService } from '../auth.service';
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 
 
@@ -17,7 +19,7 @@ export class LoginComponent implements OnInit {
   hide = true;
   socialUser: any = SocialUser;
 
-  constructor(private formBuilder: FormBuilder,private database:DatabaseService,private socialAuthService: AuthService) { }
+  constructor(private formBuilder: FormBuilder,private database:DatabaseService,private socialAuthService: AuthService , private authService:AuthTokenService ) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -40,6 +42,11 @@ export class LoginComponent implements OnInit {
               if (this.user.password==user.password){
                 if(user.active==true){
                   alert("Te-ai conectat cu succes!");
+                  this.authService.keepLoggedIn(this.user.username);
+                    navigator.geolocation.getCurrentPosition((position)=>{
+                    this.database.setGeolocation(this.user.username,position.coords.latitude,position.coords.longitude).subscribe(()=>{alert("A mers!!");});
+                  });
+                  
                 }
                 else{
                   alert("Contul nu este activat!");

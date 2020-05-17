@@ -4,13 +4,18 @@ export class ProfileModel {
     age:Number;
     sex:String;
     environment:String;
-    homeAdress:String;
+    county:String;
+    municipality:String;
+    street:String;
+    number:Number;
+    bloc:String;
+    scara:String;
+    flat:String;
     job:String;
     activity:String;
-    familyMembers:[String];
-    proximityGroup:[String];
     medicalHistory:[String];
     specialization:String;
     cabinetAdress:String;
     workNumber:String;
+    workplace:String
 }

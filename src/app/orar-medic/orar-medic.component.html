@@ -1,0 +1,106 @@
+<div style="min-height: 100vh" fxLayout="row" fxLayoutAlign="center center">
+  <div class="medium-list" fxFlex="17%">
+      <mat-card>
+        <mat-card-header>
+      <mat-card-title>Alegere Program Doctor</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+          <form [formGroup]="selectionHourForm" (ngSubmit)="selectionHourForm.valid && onSelectSubmit()" novalidate>
+              <div class="form-container">
+                <mat-label>Luni:</mat-label>
+                <mat-label>Deschide la:</mat-label>
+                  <mat-form-field>
+                      <mat-select matInput formControlName="hour1" [(ngModel)]="user.hour1" #type name="hour1">
+                        <mat-option *ngFor="let type of types1" [value]="type.value">{{type.viewValue}}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <mat-label>Inchide la:</mat-label>
+                  <mat-form-field>
+                      <mat-select matInput formControlName="hour2" [(ngModel)]="user.hour2" #type name="hour2">
+                        <mat-option *ngFor="let type of types1" [value]="type.value">{{type.viewValue}}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <mat-label>Marti:</mat-label>
+                <mat-label>Deschide la:</mat-label>
+                  <mat-form-field>
+                      <mat-select matInput formControlName="hour3" [(ngModel)]="user.hour3" #type name="hour3">
+                        <mat-option *ngFor="let type of types1" [value]="type.value">{{type.viewValue}}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <mat-label>Inchide la:</mat-label>
+                  <mat-form-field>
+                      <mat-select matInput formControlName="hour4" [(ngModel)]="user.hour4" #type name="hour4">
+                        <mat-option *ngFor="let type of types1" [value]="type.value">{{type.viewValue}}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <mat-label>Miercuri:</mat-label>
+                <mat-label>Deschide la:</mat-label>
+                  <mat-form-field>
+                      <mat-select matInput formControlName="hour5" [(ngModel)]="user.hour5" #type name="hour5">
+                        <mat-option *ngFor="let type of types1" [value]="type.value">{{type.viewValue}}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <mat-label>Inchide la:</mat-label>
+                  <mat-form-field>
+                      <mat-select matInput formControlName="hour6" [(ngModel)]="user.hour6" #type name="hour6">
+                        <mat-option *ngFor="let type of types1" [value]="type.value">{{type.viewValue}}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <mat-label>Joi:</mat-label>
+                <mat-label>Deschide la:</mat-label>
+                  <mat-form-field>
+                      <mat-select matInput formControlName="hour7" [(ngModel)]="user.hour7" #type name="hour7">
+                        <mat-option *ngFor="let type of types1" [value]="type.value">{{type.viewValue}}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <mat-label>Inchide la:</mat-label>
+                  <mat-form-field>
+                      <mat-select matInput formControlName="hour8" [(ngModel)]="user.hour8" #type name="hour8">
+                        <mat-option *ngFor="let type of types1" [value]="type.value">{{type.viewValue}}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <mat-label>Vineri:</mat-label>
+                <mat-label>Deschide la:</mat-label>
+                  <mat-form-field>
+                      <mat-select matInput formControlName="hour9" [(ngModel)]="user.hour9" #type name="9">
+                        <mat-option *ngFor="let type of types1" [value]="type.value">{{type.viewValue}}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <mat-label>Inchide la:</mat-label>
+                  <mat-form-field>
+                      <mat-select matInput formControlName="hour10" [(ngModel)]="user.hour10" #type name="hour10">
+                        <mat-option *ngFor="let type of types1" [value]="type.value">{{type.viewValue}}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <mat-label>Sambata:</mat-label>
+                <mat-label>Deschide la:</mat-label>
+                  <mat-form-field>
+                      <mat-select matInput formControlName="hour11" [(ngModel)]="user.hour11" #type name="hour11">
+                        <mat-option *ngFor="let type of types1" [value]="type.value">{{type.viewValue}}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <mat-label>Inchide la:</mat-label>
+                  <mat-form-field>
+                      <mat-select matInput formControlName="hour12" [(ngModel)]="user.hour12" #type name="hour12">
+                        <mat-option *ngFor="let type of types1" [value]="type.value">{{type.viewValue}}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <mat-label>Duminica:</mat-label>
+                <mat-label>Deschide la:</mat-label>
+                  <mat-form-field>
+                      <mat-select matInput formControlName="hour13" [(ngModel)]="user.hour13" #type name="hour13">
+                        <mat-option *ngFor="let type of types1" [value]="type.value">{{type.viewValue}}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <mat-label>Inchide la:</mat-label>
+                  <mat-form-field>
+                      <mat-select matInput formControlName="hour14" [(ngModel)]="user.hour14" #type name="hour14">
+                        <mat-option *ngFor="let type of types1" [value]="type.value">{{type.viewValue}}</mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <button mat-raised-button style="justify-content: center;" color="primary" type="submit" >Trimite</button>
+                </div>
+          </form>
+      </mat-card-content>
+  </mat-card>
+  </div>

@@ -6,6 +6,7 @@ import {User} from '../_models/user';
 @Component({
   selector: 'app-recuperare',
   templateUrl: './recuperare.component.html',
+  styleUrls: ['./recuperare.component.css']
 })
 export class RecuperareComponent implements OnInit {
   user: RecoveryModel = new RecoveryModel();
