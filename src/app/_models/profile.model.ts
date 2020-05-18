@@ -7,7 +7,7 @@ export class ProfileModel {
     county:String;
     municipality:String;
     street:String;
-    number:String;
+    number:Number;
     bloc:String;
     scara:String;
     flat:String;

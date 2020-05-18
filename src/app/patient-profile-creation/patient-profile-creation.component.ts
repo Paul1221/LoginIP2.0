@@ -102,7 +102,6 @@ export class PatientProfileCreationComponent implements OnInit {
     });
   }
   onSubmit():void{
-      this.database.createUserProfile(this.token,this.user.name,this.user.surname,this.user.age,this.user.sex,this.user.environment,this.user.county,this.user.job,this.user.activity,this.user.workNumber,'pacient').subscribe(()=>{alert("A mers!!");});
+      this.database.createPatientProfile(this.token,this.user.name,this.user.surname,this.user.age,this.user.sex,this.user.environment,this.user.street,this.user.municipality,this.user.county,this.user.number,this.user.job,this.user.activity,this.user.workNumber,'pacient').subscribe(()=>{alert("A mers!!");});
   }
-
 }

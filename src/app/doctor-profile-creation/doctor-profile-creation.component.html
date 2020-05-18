@@ -5,21 +5,24 @@
                 <mat-card-title>Creare profil doctor</mat-card-title>
             </mat-card-header>
             <mat-card-content style="text-align: center;">
-                <form [formGroup]="profileForm" (ngSubmit)="profileForm.valid && onSubmit()" novalidate>
+                <form [formGroup]="profileForm" (ngSubmit)="profileForm.valid && onSubmit()">
                     <mat-grid-list cols="2" rowHeight="100" style="height: 500px">
                         <mat-grid-tile>
                             <mat-form-field>
                                 <input matInput id="name" formControlName="name" [(ngModel)]="user.name" placeholder="Nume" />
+                                <mat-error *ngIf="profileForm.get('name').hasError('required') && (profileForm.get('name').dirty || profileForm.get('name').touched)">Introduceti numele de familie</mat-error>
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>
                             <mat-form-field>
                                 <input matInput id="surname" formControlName="surname" [(ngModel)]="user.surname" placeholder="Prenume" />
+                                <mat-error *ngIf="profileForm.get('surname').hasError('required') && (profileForm.get('surname').dirty || profileForm.get('surname').touched)">Introduceti prenumele</mat-error>
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>
                             <mat-form-field>
                                 <input matInput id="county" formControlName="county" [(ngModel)]="user.county" placeholder="Judet" />
+                                <mat-error *ngIf="profileForm.get('county').hasError('required') && (profileForm.get('county').dirty || profileForm.get('county').touched)">Introduceti judetul</mat-error>
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>
@@ -30,11 +33,13 @@
                         <mat-grid-tile>
                             <mat-form-field>
                                 <input matInput id="street" formControlName="street" [(ngModel)]="user.street" placeholder="Strada" />
+                                <mat-error *ngIf="profileForm.get('street').hasError('required') && (profileForm.get('street').dirty || profileForm.get('street').touched)">Numele strazii</mat-error>
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>
                             <mat-form-field>
                                 <input matInput id="number" formControlName="number" [(ngModel)]="user.number" placeholder="Numarul" />
+                                <mat-error *ngIf="profileForm.get('number').hasError('required') && (profileForm.get('number').dirty || profileForm.get('number').touched)">Numarul imobilului</mat-error>
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>
@@ -49,20 +54,8 @@
                         </mat-grid-tile>
                         <mat-grid-tile>
                             <mat-form-field>
-                                <input matInput id="flat" formControlName="flat" [(ngModel)]="user.flat" placeholder="Apartament" />
-                            </mat-form-field>
-                        </mat-grid-tile>
-                        <mat-grid-tile>
-                            <mat-form-field>
                                 <input matInput id="age" formControlName="age" [(ngModel)]="user.age" placeholder="Varsta" />
-                            </mat-form-field>
-                        </mat-grid-tile>
-                        <mat-grid-tile>
-                            <mat-form-field>
-                                <mat-label>Mediul de viata</mat-label>
-                                <mat-select matInput formControlName="environment" [(ngModel)]="user.environment" #environment name="environment">
-                                    <mat-option *ngFor="let environment of environments" [value]="environment.value">{{environment.viewValue}}</mat-option>
-                                </mat-select>
+                                <mat-error *ngIf="profileForm.get('age').hasError('required') && (profileForm.get('age').dirty || profileForm.get('age').touched)">Introduceti varsta</mat-error>
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>

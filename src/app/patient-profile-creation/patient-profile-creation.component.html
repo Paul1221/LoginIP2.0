@@ -5,16 +5,20 @@
                 <mat-card-title>Creare profil pacient</mat-card-title>
             </mat-card-header>
             <mat-card-content style="text-align: center;">
-                <form [formGroup]="profileForm" (ngSubmit)="profileForm.valid && onSubmit()" novalidate>
+                <form [formGroup]="profileForm" (ngSubmit)="profileForm.valid && onSubmit()">
                     <mat-grid-list cols="2" rowHeight="100" style="height: 500px">
                         <mat-grid-tile>
                             <mat-form-field>
                                 <input matInput id="name" formControlName="name" [(ngModel)]="user.name" placeholder="Nume" />
+                                <mat-error *ngIf="profileForm.get('name').hasError('required') && (profileForm.get('name').dirty || profileForm.get('name').touched)">Introduceti numele de familie</mat-error>
+
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>
                             <mat-form-field>
                                 <input matInput id="surname" formControlName="surname" [(ngModel)]="user.surname" placeholder="Prenume" />
+                                <mat-error *ngIf="profileForm.get('surname').hasError('required') && (profileForm.get('surname').dirty || profileForm.get('surname').touched)">Introduceti prenumele</mat-error>
+
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>
@@ -25,6 +29,8 @@
                         <mat-grid-tile>
                             <mat-form-field>
                                 <input matInput id="county" formControlName="county" [(ngModel)]="user.county" placeholder="Judet" />
+                                <mat-error *ngIf="profileForm.get('county').hasError('required') && (profileForm.get('county').dirty || profileForm.get('county').touched)">Introduceti judetul</mat-error>
+
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>
@@ -35,11 +41,15 @@
                         <mat-grid-tile>
                             <mat-form-field>
                                 <input matInput id="street" formControlName="street" [(ngModel)]="user.street" placeholder="Strada" />
+                                <mat-error *ngIf="profileForm.get('street').hasError('required') && (profileForm.get('street').dirty || profileForm.get('street').touched)">Numele strazii</mat-error>
+
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>
                             <mat-form-field>
                                 <input matInput id="number" formControlName="number" [(ngModel)]="user.number" placeholder="Numarul" />
+                                <mat-error *ngIf="profileForm.get('number').hasError('required') && (profileForm.get('number').dirty || profileForm.get('number').touched)">Numarul imobilului</mat-error>
+
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>
@@ -60,6 +70,8 @@
                         <mat-grid-tile>
                             <mat-form-field>
                                 <input matInput id="age" formControlName="age" [(ngModel)]="user.age" placeholder="Varsta" />
+                                <mat-error *ngIf="profileForm.get('age').hasError('required') && (profileForm.get('age').dirty || profileForm.get('age').touched)">Introduceti varsta</mat-error>
+
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>
@@ -73,6 +85,7 @@
                                 <mat-select matInput formControlName="environment" [(ngModel)]="user.environment" #environment name="environment">
                                     <mat-option *ngFor="let environment of environments" [value]="environment.value">{{environment.viewValue}}</mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="profileForm.get('environment').hasError('required') && (profileForm.get('environment').dirty || profileForm.get('environment').touched)">Selectati mediul de viata</mat-error>
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>
@@ -81,6 +94,8 @@
                                 <mat-select matInput formControlName="activity" [(ngModel)]="user.activity" #activity name="activity">
                                     <mat-option *ngFor="let activity of activities" [value]="activity.value">{{activity.viewValue}}</mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="profileForm.get('activity').hasError('required') && (profileForm.get('activity').dirty || profileForm.get('activity').touched)">Selectati frecventa activitatilor fizice</mat-error>
+
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>
@@ -89,11 +104,13 @@
                                 <mat-select matInput formControlName="sex" [(ngModel)]="user.sex" #sex name="gender">
                                     <mat-option *ngFor="let gender of genders" [value]="gender.value">{{gender.viewValue}}</mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="profileForm.get('sex').hasError('required') && (profileForm.get('sex').dirty || profileForm.get('sex').touched)">Selectati sexul</mat-error>
                             </mat-form-field>
                         </mat-grid-tile>
                         <mat-grid-tile>
                             <mat-form-field>
                                 <input matInput id="workNumber" formControlName="workNumber" [(ngModel)]="user.workNumber" placeholder="Telefon" />
+                                <mat-error *ngIf="profileForm.get('workNumber').hasError('required') && (profileForm.get('workNumber').dirty || profileForm.get('workNumber').touched)">Introduceti numarul de telefon</mat-error>
                             </mat-form-field>
                         </mat-grid-tile>
                     </mat-grid-list>

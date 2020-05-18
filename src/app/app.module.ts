@@ -24,6 +24,7 @@ import { SocialLoginModule,AuthServiceConfig,FacebookLoginProvider,GoogleLoginPr
 import { PatientProfileCreationComponent } from './patient-profile-creation/patient-profile-creation.component';
 import { DoctorProfileCreationComponent } from './doctor-profile-creation'
 import { SelectionComponent } from './selection';
+import { OrarMedicComponent } from './orar-medic';
 
 const config=new AuthServiceConfig([{
     id: GoogleLoginProvider.PROVIDER_ID,
@@ -65,7 +66,8 @@ export function provideConfig(){
         AlertComponent,
         PatientProfileCreationComponent,
         DoctorProfileCreationComponent,
-        SelectionComponent
+        SelectionComponent,
+        OrarMedicComponent
     ],
         
     providers: [

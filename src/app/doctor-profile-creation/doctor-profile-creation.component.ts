@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProfileModel } from '../_models/profile.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DatabaseService } from '../database.service';
-import {ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router } from '@angular/router';
 
 interface Gender {
     value: string;
@@ -28,8 +28,8 @@ export class DoctorProfileCreationComponent implements OnInit {
   user:ProfileModel = new ProfileModel();
   profileForm : FormGroup;
   token:any;
-
-  constructor(private formBuilder: FormBuilder,private database:DatabaseService,private route: ActivatedRoute) { }
+  specializari= new Array();
+  constructor(private formBuilder: FormBuilder,private database:DatabaseService,private route: ActivatedRoute, private router:Router ,) { }
   
 
   genders: Gender[] = [
@@ -112,9 +112,6 @@ export class DoctorProfileCreationComponent implements OnInit {
       'sex': [this.user.sex, [
        
       ]],
-      'environment': [this.user.environment, [
-        
-      ]],
       'county': [this.user.county, [
         Validators.required
       ]],
@@ -130,10 +127,8 @@ export class DoctorProfileCreationComponent implements OnInit {
       ]],
       'scara': [this.user.scara, [
       ]],
-      'flat': [this.user.flat, [
-      ]],
       'specialization': [this.user.specialization, [
-        
+      
       ]],
       'workplace': [this.user.workplace, [
         
@@ -144,7 +139,9 @@ export class DoctorProfileCreationComponent implements OnInit {
     });
   }
   onSubmit():void{
-      this.database.createUserProfile(this.token,this.user.name,this.user.surname,this.user.age,this.user.sex,this.user.environment,this.user.county,this.user.job,this.user.activity,this.user.workNumber,'doctor');
-  }
-
+      
+      this.specializari.push(this.user.specialization);
+      this.database.createDoctorProfile(this.token,this.user.name,this.user.surname,this.specializari,this.user.street,this.user.municipality,this.user.county,this.user.number,this.user.age,this.user.workNumber,this.user.workplace,'doctor').subscribe(()=>{alert("A mers!!");});
+      this.router.navigate(['/orarDoctor/'+this.token]);
+    }
 }

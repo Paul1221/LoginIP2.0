@@ -6,6 +6,7 @@ import {User} from '../_models/user';
 @Component({
   selector: 'app-recuperare',
   templateUrl: './recuperare.component.html',
+  styleUrls: ['./recuperare.component.css']
 })
 export class RecuperareComponent implements OnInit {
   user: RecoveryModel = new RecoveryModel();
@@ -23,7 +24,7 @@ export class RecuperareComponent implements OnInit {
   onSubmit(){
     this.database.getUserByEmail(this.user.email).subscribe(
         (user:User)=>{
-            if (this.user.email==user.email){
+            if (user != null){
                 alert(this.user.email);
                 this.database.passRecover(this.user.email).subscribe();
             }

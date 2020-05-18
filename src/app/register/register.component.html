@@ -1,36 +1,43 @@
 ﻿<div style="min-height: 100vh" fxLayout="row" fxLayoutAlign="center center">
-<div class="medium-list" fxFlex="17%">
-    <button mat-flat-button color="primary" style="width: 147px;margin-left: 3px; font-size: large; font-weight: bold;" routerLink="/register" class="divider">Inregistrare</button>
-    <button mat-flat-button color="primary" style="width: 147px;margin-left: 3px; font-size: large; font-weight: bold;" routerLink="/login" class="divider">Logare</button>  
-    <mat-card>
-      <mat-card-header>
-    <mat-card-title>Inregistrare</mat-card-title>
-</mat-card-header>
-<mat-card-content>
-        <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && onRegisterSubmit()" novalidate>
-            <div class="form-container">
-                <mat-form-field>
-                    <input id="email" matInput formControlName="email" [(ngModel)]="user.email" placeholder="Email" />
-                </mat-form-field>
-                <mat-form-field>
-                    <input id="username" matInput formControlName="username" [(ngModel)]="user.username" placeholder="Username" />
-                </mat-form-field>
-                <mat-form-field>
-                    <input id="password" matInput formControlName="password" [(ngModel)]="user.password" placeholder="Password" [type]="hide ? 'password':'text'" />
-                    <mat-icon matSuffix (click)="hide = !hide">
-                      {{hide ? 'visibility' : 'visibility_off'}}
-                    </mat-icon>
-                </mat-form-field>
-                <mat-form-field>
-                    <input id="cpassword" matInput formControlName="cpassword" [(ngModel)]="user.cpassword" placeholder="Confirm Password" [type]="hide ? 'password':'text'" />
-                    <mat-icon matSuffix (click)="hide = !hide">
-                      {{hide ? 'visibility' : 'visibility_off'}}
-                    </mat-icon>
-                </mat-form-field>
-                <button mat-flat-button color="accent" type="submit" >Trimite</button>
-                
-            </div>
-        </form>
-    </mat-card-content>
-</mat-card>
-</div>
+    <div class="medium-list" fxFlex="17%">
+        <button mat-flat-button color="primary" style="width: 147px;margin-left: 3px; font-size: large; font-weight: bold;" routerLink="/register" class="divider">Inregistrare</button>
+        <button mat-flat-button color="primary" style="width: 147px;margin-left: 3px; font-size: large; font-weight: bold;" routerLink="/login" class="divider">Logare</button>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Inregistrare</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && onRegisterSubmit()">
+                    <div class="form-container">
+                        <mat-form-field>
+                            <input matInput formControlName="email" id="email" [(ngModel)]="user.email" placeholder="Email" />
+                            <mat-error *ngIf="registerForm.get('email').hasError('required') && (registerForm.get('email').dirty || registerForm.get('email').touched)">Enter a valid e-mail adress</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input id="username" matInput formControlName="username" [(ngModel)]="user.username" placeholder="Username" />
+                            <mat-error *ngIf="registerForm.get('username').hasError('required') && (registerForm.get('username').dirty || registerForm.get('username').touched)">Enter a valid username</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input id="password" matInput formControlName="password" [(ngModel)]="user.password" placeholder="Password" [type]="hide ? 'password':'text'" />
+                            <mat-icon matSuffix (click)="hide = !hide">
+                                {{hide ? 'visibility' : 'visibility_off'}}
+                            </mat-icon>
+                            <mat-error *ngIf="registerForm.get('password').hasError('minlength') && (registerForm.get('password').dirty || registerForm.get('password').touched)">Password is too short</mat-error>
+                            <mat-error *ngIf="registerForm.get('password').hasError('maxlength') && (registerForm.get('password').dirty || registerForm.get('password').touched)">Password is too long</mat-error>
+                            <mat-error *ngIf="registerForm.get('password').hasError('required') && (registerForm.get('password').dirty || registerForm.get('password').touched)">Enter a valid password</mat-error>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input id="cpassword" matInput formControlName="cpassword" [(ngModel)]="user.cpassword" placeholder="Confirm Password" [type]="hide ? 'password':'text'" [errorStateMatcher]="matcher" />
+                            <mat-error *ngIf="registerForm.get('cpassword').hasError('notSame')">Passwords do not match!</mat-error>
+                            <mat-icon matSuffix (click)="hide = !hide">
+                                {{hide ? 'visibility' : 'visibility_off'}}
+                            </mat-icon>
+                        </mat-form-field>
+
+                        <button mat-flat-button color="accent" type="submit">Trimite</button>
+
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
