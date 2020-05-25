@@ -167,7 +167,6 @@ export class OrarMedicComponent implements OnInit {
   }
 
   onSelectSubmit(){
-    alert("Luni: " + this.user.hour1 + " ->" + this.user.hour2);
     this.disponibility.push(this.user.hour1 + " " + this.user.hour2);
     this.disponibility.push(this.user.hour3 + " " + this.user.hour4);
     this.disponibility.push(this.user.hour5 + " " + this.user.hour6);
@@ -175,7 +174,7 @@ export class OrarMedicComponent implements OnInit {
     this.disponibility.push(this.user.hour9 + " " + this.user.hour10);
     this.disponibility.push(this.user.hour11 + " " + this.user.hour12);
     this.disponibility.push(this.user.hour13 + " " + this.user.hour14);
-    this.database.createDoctorDisponibility(this.token,this.disponibility).subscribe(()=>{alert("a mers!")});
+    this.database.createDoctorDisponibility(this.token,this.disponibility).subscribe(()=>{});
   }
 
 }

@@ -74,6 +74,7 @@ export class PatientProfileCreationComponent implements OnInit {
         Validators.required
       ]],
       'municipality': [this.user.municipality, [
+        Validators.required
       ]],
       'street': [this.user.street, [
         Validators.required
@@ -82,10 +83,13 @@ export class PatientProfileCreationComponent implements OnInit {
         Validators.required
       ]],
       'bloc': [this.user.bloc, [
+        Validators.required
       ]],
       'scara': [this.user.scara, [
+        Validators.required
       ]],
       'flat': [this.user.flat, [
+        Validators.required
       ]],
       'job': [this.user.job, [
         Validators.required
@@ -94,7 +98,7 @@ export class PatientProfileCreationComponent implements OnInit {
         Validators.required
       ]],
       'medicalHistory': [this.user.medicalHistory, [
-       
+        Validators.required
       ]],
       'workNumber': [this.user.workNumber, [
         Validators.required   

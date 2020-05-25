@@ -29,7 +29,7 @@ export class DoctorProfileCreationComponent implements OnInit {
   profileForm : FormGroup;
   token:any;
   specializari= new Array();
-  constructor(private formBuilder: FormBuilder,private database:DatabaseService,private route: ActivatedRoute, private router:Router ,) { }
+  constructor(private formBuilder: FormBuilder,private database:DatabaseService,private route: ActivatedRoute, private router:Router) { }
   
 
   genders: Gender[] = [
@@ -110,7 +110,7 @@ export class DoctorProfileCreationComponent implements OnInit {
         Validators.required
       ]],
       'sex': [this.user.sex, [
-       
+        Validators.required
       ]],
       'county': [this.user.county, [
         Validators.required
@@ -124,17 +124,19 @@ export class DoctorProfileCreationComponent implements OnInit {
         Validators.required
       ]],
       'bloc': [this.user.bloc, [
+        Validators.required
       ]],
       'scara': [this.user.scara, [
+        Validators.required
       ]],
       'specialization': [this.user.specialization, [
-      
+        Validators.required
       ]],
       'workplace': [this.user.workplace, [
-        
+        Validators.required
       ]],
       'workNumber': [this.user.workNumber, [
-        
+        Validators.required
       ]]
     });
   }

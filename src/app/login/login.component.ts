@@ -5,6 +5,7 @@ import {DatabaseService} from '../database.service';
 import {User} from '../_models/user';
 import {AuthService,SocialUser,GoogleLoginProvider,FacebookLoginProvider} from 'angularx-social-login';
 import { AuthTokenService } from '../auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,15 +14,18 @@ import { AuthTokenService } from '../auth.service';
 
 
 export class LoginComponent implements OnInit {
-
+  da:String;
   user: LoginModel = new LoginModel();
   loginForm: FormGroup;
   hide = true;
   socialUser: any = SocialUser;
 
-  constructor(private formBuilder: FormBuilder,private database:DatabaseService,private socialAuthService: AuthService , private authService:AuthTokenService ) { }
+  constructor(private formBuilder: FormBuilder,private database:DatabaseService,private socialAuthService: AuthService , private authService:AuthTokenService , private router:Router) { }
 
   ngOnInit() {
+    if(localStorage.getItem("loginToken")!=null){
+      this.router.navigate(["/alreadyAuth"]);
+    }
     this.loginForm = this.formBuilder.group({
       'username': [this.user.username, [
         Validators.required
@@ -30,6 +34,7 @@ export class LoginComponent implements OnInit {
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(30)
+        
       ]]
     });
   }
@@ -41,12 +46,11 @@ export class LoginComponent implements OnInit {
         if (this.user.username==user.username){
               if (this.user.password==user.password){
                 if(user.active==true){
-                  alert("Te-ai conectat cu succes!");
-                  this.authService.keepLoggedIn(this.user.username);
+                    this.authService.keepLoggedIn(this.user.username);
                     navigator.geolocation.getCurrentPosition((position)=>{
-                    this.database.setGeolocation(this.user.username,position.coords.latitude,position.coords.longitude).subscribe(()=>{alert("A mers!!");});
-                  });
-                  
+                      this.database.setGeolocation(this.user.username,position.coords.latitude,position.coords.longitude).subscribe(()=>{});
+                    });
+                  this.router.navigate(["/main"])
                 }
                 else{
                   alert("Contul nu este activat!");
@@ -91,11 +95,23 @@ export class LoginComponent implements OnInit {
           this.socialUser=userData;
           this.database.getUserByEmail(this.socialUser.email).subscribe(
             (user:User)=>{
-              console.log(user);
+              const username = this.getValidUsernameForSocial();
               if(user==null){
-                this.database.addSocialUser(this.socialUser.email,this.getValidUsernameForSocial(),this.getValidPasswordForSocial()).subscribe(()=>{alert("A mers!!");});
+                this.database.addSocialUser(this.socialUser.email,username,this.getValidPasswordForSocial()).subscribe(()=>{
+                  this.authService.keepLoggedIn(username);
+                  navigator.geolocation.getCurrentPosition((position)=>{
+                    this.database.setGeolocation(username,position.coords.latitude,position.coords.longitude).subscribe(()=>{});
+                  });
+                  this.router.navigate(["/main"]);
+                });
               }
-              
+              else{
+                this.authService.keepLoggedIn(username);
+                navigator.geolocation.getCurrentPosition((position)=>{
+                  this.database.setGeolocation(username,position.coords.latitude,position.coords.longitude).subscribe(()=>{});
+                });
+                this.router.navigate(["/main"]);
+              }
             }
           );
         });
