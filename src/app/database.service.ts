@@ -58,7 +58,6 @@ export class DatabaseService {
 
 
   setGeolocation(username:String,latitude:Number,longitude:Number){
-    alert (latitude);
     return this.post(`setGeolocation/${username}`,{latitude,longitude});
   }
 
