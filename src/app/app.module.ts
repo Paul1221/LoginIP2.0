@@ -25,6 +25,9 @@ import { PatientProfileCreationComponent } from './patient-profile-creation/pati
 import { DoctorProfileCreationComponent } from './doctor-profile-creation'
 import { SelectionComponent } from './selection';
 import { OrarMedicComponent } from './orar-medic';
+import { ExpiratComponent } from './expirat';
+import { SuccesComponent } from './succes';;
+import { AlreadyauthComponent } from './alreadyauth/alreadyauth.component'
 
 const config=new AuthServiceConfig([{
     id: GoogleLoginProvider.PROVIDER_ID,
@@ -67,7 +70,10 @@ export function provideConfig(){
         PatientProfileCreationComponent,
         DoctorProfileCreationComponent,
         SelectionComponent,
-        OrarMedicComponent
+        OrarMedicComponent,
+        ExpiratComponent,
+        SuccesComponent,
+        AlreadyauthComponent
     ],
         
     providers: [

@@ -8,6 +8,9 @@ import { AuthGuard } from './_helpers';
 import { PatientProfileCreationComponent } from './patient-profile-creation/patient-profile-creation.component';
 import { DoctorProfileCreationComponent } from './doctor-profile-creation';
 import { OrarMedicComponent } from './orar-medic';
+import { SuccesComponent } from './succes';
+import { ExpiratComponent } from './expirat';
+import { AlreadyauthComponent } from './alreadyauth/alreadyauth.component';
 
 
 
@@ -21,6 +24,9 @@ const routes: Routes = [
     { path: 'doctorProfileCreation/:token', component: DoctorProfileCreationComponent },
     { path: 'patientProfileCreation/:token', component: PatientProfileCreationComponent },
     { path: 'orarDoctor/:token',component: OrarMedicComponent},
+    { path: 'regSucces',component: SuccesComponent},
+    { path: 'confirmationExp',component: ExpiratComponent},
+    { path: 'alreadyAuth',component: AlreadyauthComponent},
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
 ];
